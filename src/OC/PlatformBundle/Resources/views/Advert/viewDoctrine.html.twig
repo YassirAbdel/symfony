@@ -1,0 +1,14 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/viewDoctrine.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+  <h2>Liste des annonces</h2>
+    <ul>
+      <li>{{ advert.content }}</li>
+    </ul>
+{% endblock %}

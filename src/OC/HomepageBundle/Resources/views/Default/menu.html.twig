@@ -1,0 +1,17 @@
+{# OC/HomepageBundle/Resources/views/Default/index.html.twig #}
+
+
+{% if listPages is defined %}
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                {% for page in listPages %} 
+                    <li>
+                        <a href="{{ path(page.url) }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+{% endif %}
+
+

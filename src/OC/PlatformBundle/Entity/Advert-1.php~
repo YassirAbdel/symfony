@@ -1,0 +1,43 @@
+<?php
+
+// src/OC/PlatformBundle/Entity/Advert.php
+
+namespace OC\PlatformBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+class Advert
+{
+    /**
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+    protected $id;
+    
+    /**
+   * @ORM\Column(name="content", type="string", length=255)
+   */
+    protected $content;
+    
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+    public function getContent()
+    {
+        return $this->content;
+    }
+    public function __toString()
+    {
+        return $this->content;
+    }
+}
