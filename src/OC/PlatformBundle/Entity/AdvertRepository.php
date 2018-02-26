@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 
 class AdvertRepository extends EntityRepository
 {
-  public function myFindAll1()
+  public function myFindAll()
   {
     // Méthode 1 : en passant par l'EntityManager
     $queryBuilder = $this->_em->createQueryBuilder()
@@ -34,7 +34,7 @@ class AdvertRepository extends EntityRepository
    
   }
  
-  public function myFindAll()
+  public function myFindAll1()
   {
     return $this
         ->createQueryBuilder('a')
