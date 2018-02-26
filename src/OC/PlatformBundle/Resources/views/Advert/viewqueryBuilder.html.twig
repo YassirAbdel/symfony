@@ -8,23 +8,25 @@
 
 {% block ocplatform_body %}
 
-  <h2>Liste des annonces</h2>
+  <h2>Annonces : </h2>
 
-  <ul>
-    {% for advert in listAdverts %}
-      <li>
-        <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
-          {{ advert.title }}
-        </a>
-        par {{ advert.author }},
-        le {{ advert.date|date('d/m/Y') }}
-      </li>
-    {% else %}
-      <li>Pas (encore !) d'annonces</li>
-    {% endfor %}
-  </ul>
+ 
+    {% if listadverts|length > 0 %}
+        {% for Advert in listadverts %}
+        <p>
+          {{ Advert.title }}
+        
+        par {{ Advert.author }},
+        le {{ Advert.date|date('d/m/Y') }}
+        </p>
+        {% else %}
+        <p>Pas (encore !) d'annonces</p>
+        {% endfor %}
+    {% endif %}
+ 
  {# On affiche tous les messages flash dont le nom est « notices » #}
  {% for message in app.session.flashbag.get('notice') %}
      <p>{{ message }}</p>
  {% endfor %}
 {% endblock %}
+

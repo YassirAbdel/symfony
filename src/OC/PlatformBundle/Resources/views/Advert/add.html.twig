@@ -9,8 +9,13 @@
   {{ include("OCPlatformBundle:Advert:form.html.twig") }}
 
   <p>
-    Attention : cette annonce sera ajoutée directement
+    Attentions : cette annonce sera ajoutée directement
     sur la page d'accueil après validation du formulaire.
   </p>
+  {# On affiche tous les messages flash dont le nom est « notices » #}
+ {% for message in app.session.flashbag.get('notices') %}
+     <p> class="alert alert-info">Message flash : {{ message }}</p>>
+ {% endfor %}
+ 
 
 {% endblock %}

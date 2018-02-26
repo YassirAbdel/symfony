@@ -11,4 +11,4 @@ parameters:
     mailer_password: null
     secret: 598f56550386b7832631aabb006a4299bf1106e9
     app_webmaster: moi-même
-    local: en
+    local: fr

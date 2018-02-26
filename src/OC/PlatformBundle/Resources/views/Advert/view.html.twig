@@ -1,17 +1,61 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bienvenue sur ma pemière page avec OpenClassrooms !</title>
-    </head>
-    <body>
-        <div>
-            
-                <p>Message flash : {{ erreur }}</p>
-            
-        </div>
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+  <h2>Annonce : </h2>
+
+ 
+      {% if advert is defined %}
+      <p>
+          {{ advert.title }}
         
-        <p>Responsable du site : {{ webmaster }}.</p>
-    </body>
-</html>
+        par {{ advert.author }},
+        le {{ advert.date|date('d/m/Y') }}
+      </p>
+    {% else %}
+        <p>Pas (encore !) d'annonces</p>
+    {% endif %}
+ 
+    <h3>Candidatures :</h3>
+    {% if application|length > 0 %}
+    <ul>
+    
+    {% for application in listApplications %}
+      <li>
+        
+          {{ application.author }}. 
+        
+        Commentaire : {{ application.content }} 
+        le {{ application.date|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) de candidatures</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+  
+  <h3>Compétences :</h3>
+    {# src/OC/PlatformBundle/Resources/view/Advert/view.html.twig #}
 
-
+    {% if listAdvertSkills|length > 0 %}
+        <div>
+            Cette annonce requiert les compétences suivantes :
+        <ul>
+            {% for advertSkill in listAdvertSkills %}
+            <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+    
+ {# On affiche tous les messages flash dont le nom est « notices » #}
+ {% for message in app.session.flashbag.get('notice') %}
+     <p>{{ message }}</p>
+ {% endfor %}
+{% endblock %}

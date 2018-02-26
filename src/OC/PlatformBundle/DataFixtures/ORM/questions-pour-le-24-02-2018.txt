@@ -1,0 +1,56 @@
+1. **********************
+Je n'ai compris cette joinTable :
+
+
+
+<?php
+
+/**
+ * @ORM\ManyToMany(targetEntity="OC\PlatformBundle\Entity\Category", cascade={"persist"})
+ * @ORM\JoinTable(name="oc_advert_category")
+ */
+private $categories;
+
+2. - Exécuter:
+	php bin/console doctrine:fixtures:load --append
+	
+Comment faire sans purger la base. Par exemple : exécuter un seul fichier :
+
+loading OC\PlatformBundle\DataFixtures\ORM\LoadSkill
+
+3. Je ne comprends pas ce code :
+
+public function setAdvert(Advert $advert)
+  {
+    $this->advert = $advert;
+  }
+
+  public function getAdvert()
+  {
+    return $this->advert;
+  }
+
+  public function setSkill(Skill $skill)
+  {
+    $this->skill = $skill;
+  }
+
+4. Est-ce la bonne méthode ?
+
+********************************
+- Erreur :
+
+[InvalidArgumentException]                    
+  Could not find any fixture services to load. 
+  
+  Correction :
+    limiter la version de doctrine-fixtures-bundle en ^2.0
+*****************************
+
+5. La notion de l'alias dans createQueryBuilder($alias) ?
+
+6. Comment récupérer les méthodes de la class AdvertRepository dans routing.yml
+
+
+
+

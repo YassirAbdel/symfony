@@ -3,15 +3,33 @@
 namespace OC\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Advert
  *
  * @ORM\Table(name="advert")
  * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\AdvertRepository")
- */
+ * */
 class Advert
 {
+    /**
+     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Application", mappedBy="advert")
+     */
+    private $applications; //Notes le "s", une annonce est liée à plusieurs candidatures
+    
+    /**
+    * @ORM\ManyToMany(targetEntity="OC\PlatformBundle\Entity\Category", cascade={"persist"})
+    * @ORM\JoinTable(name="oc_advert_category")
+    */
+    private $categories;
+    
+    /**
+    * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $image;
+    
     /**
      * @var int
      *
@@ -56,6 +74,34 @@ class Advert
       */
       private $published = true;
     
+    public function __construct()
+    {
+       // Date : date de la prise de la commande
+       // Par défaut, la date de l'annonce est la date d'aujourd'hui
+       // Comme la propriété $categories doit être un ArrayCollection,
+       // On doit la définir dans un constructeur :
+       $this->date = new \Datetime();
+       $this->categories = new ArrayCollection();
+    }
+    
+    // Notez le singulier, on ajoute une seule catégorie à la fois
+    public function addCategory(Category $category)
+    {
+        // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+        $this->categories[] = $category;
+    }
+    
+    public function removeCategory(Category $category)
+    {
+        // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+        $this->categories->removeElement($category);
+    }
+    
+     // Notez le pluriel, on récupère une liste de catégories ici !
+    public function getCategories()
+    {
+         return $this->categories;
+    }
     
     /**
      * Get id.
@@ -185,5 +231,71 @@ class Advert
     public function getPublished()
     {
         return $this->published;
+    }
+    
+    /**
+     * Set image.
+     *
+     * @param \OC\PlatformBundle\Entity\Image $image
+     *
+     * @return Advert
+     */
+    public function setImage(\OC\PlatformBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image.
+     *
+     * @return \OC\PlatformBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    
+    
+
+    /**
+     * Add application.
+     *
+     * @param \OC\PlatformBundle\Entity\Application $application
+     *
+     * @return Advert
+     */
+    public function addApplication(\OC\PlatformBundle\Entity\Application $application)
+    {
+        $this->applications[] = $application;
+        
+        // On lie l'annonce à la candidature 
+        $application->setAdvert($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove application.
+     *
+     * @param \OC\PlatformBundle\Entity\Application $application
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeApplication(\OC\PlatformBundle\Entity\Application $application)
+    {
+        return $this->applications->removeElement($application);
+    }
+
+    /**
+     * Get applications.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getApplications()
+    {
+        return $this->applications;
     }
 }
