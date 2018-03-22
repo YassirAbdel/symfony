@@ -23,7 +23,7 @@ class LoadSkill implements FixtureInterface
       $manager->persist($skill);
     }
 
-    // On déclenche l'enregistrement de toutes les catégories
+    // On déclenche l'enregistrement de toutes les compétences
     $manager->flush();
   }
 }
