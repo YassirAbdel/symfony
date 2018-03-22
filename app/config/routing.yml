@@ -1,14 +1,9 @@
-oc_homepage:
-     resource: "@OCHomepageBundle/Resources/config/routing.yml"
-    
-oc_platform_homepage:
+# app/config/routing.yml
+
+oc_platform:
     resource: "@OCPlatformBundle/Resources/config/routing.yml"
     prefix:   /platform
 
-# app:
-    # resource: '@AppBundle/Controller/'
-    # type: annotation
-
-# On inclut les routes de notre CoreBundle, sans préfixe
+# On inclut également les routes de notre CoreBundle, sans préfixe
 oc_core:
     resource: "@OCCoreBundle/Resources/config/routing.yml"

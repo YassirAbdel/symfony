@@ -1,14 +1,14 @@
 # This file is auto-generated during the composer install
 parameters:
+    database_driver: pdo_mysql
     database_host: localhost
-    database_port: null
+    database_port: 8889
     database_name: symfony
-    database_user: root
-    database_password: root
+    database_user: cnd
+    database_password: test
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
+    locale: en
     secret: 598f56550386b7832631aabb006a4299bf1106e9
-    app_webmaster: moi-même
-    local: fr

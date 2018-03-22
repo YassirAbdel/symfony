@@ -1,26 +1,25 @@
-{# app/Resources/views/layout.html.twig #}
+{# src/OC/CoreBundle/Resources/views/layout.html.twig #}
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% block title %}OC Plateforme{% endblock %}</title>
+    <title>{% block title %}OC Plateforme{% endblock %}</title>
 
-  {% block stylesheets %}
-    {# On charge le CSS de bootstrap depuis le site directement #}
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  {% endblock %}
-</head>
+    {% block stylesheets %}
+      {# On charge le CSS de bootstrap depuis le site directement #}
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {% endblock %}
+  </head>
 
-<body>
+  <body>
   <div class="container">
     <div id="header" class="jumbotron">
       <h1>Ma plateforme d'annonces</h1>
       <p>
-        Ce projet est propulsé par Symfony,
-        et construit grâce au MOOC OpenClassrooms et SensioLabs.
+        Ce projet est propulsé par Symfony, et construit grâce au MOOC OpenClassrooms et SensioLabs.
       </p>
       <p>
         <a class="btn btn-primary btn-lg" href="https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony2">
@@ -28,7 +27,7 @@
         </a>
       </p>
     </div>
-    {{ render(controller("OCHomepageBundle:Default:menu")) }}
+
     <div class="row">
       <div id="menu" class="col-md-3">
         <h3>Les annonces</h3>
@@ -59,5 +58,5 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   {% endblock %}
 
-</body>
+  </body>
 </html>
