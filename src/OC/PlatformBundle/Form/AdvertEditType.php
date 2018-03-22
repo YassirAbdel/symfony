@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-class AdvertEditType extends AbstractType
+class AdvertEditType1 extends AbstractType
 {
     public function getParent ()
     {
